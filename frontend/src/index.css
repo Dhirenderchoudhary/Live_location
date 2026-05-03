@@ -1,0 +1,350 @@
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --bg-color: #000000;
+  --card-bg: rgba(28, 28, 30, 0.75);
+  --text-primary: #ffffff;
+  --text-secondary: #8e8e93;
+  --primary-color: #0a84ff;
+  --primary-hover: #007aff;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  height: 100vh;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  height: 100%;
+}
+
+/* ── LOGIN SCREEN ── */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--bg-color);
+  background-image: radial-gradient(circle at 50% -20%, rgba(10, 132, 255, 0.15), transparent 60%);
+}
+
+.login-card {
+  background: var(--card-bg);
+  padding: 3rem 2.5rem;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+}
+
+.login-card h1 {
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+}
+
+.login-card p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.login-card input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.login-card input:focus {
+  border-color: var(--primary-color);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.login-card button {
+  width: 100%;
+  padding: 1rem;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.login-card button:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+/* ── APP LAYOUT (Apple Maps Split Layout) ── */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #1a1b1e;
+}
+.apple-layout {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ── APPLE MAPS WEB SIDEBAR ── */
+.apple-sidebar {
+  width: 320px;
+  min-width: 320px;
+  height: 100%;
+  background-color: #171b26; /* Deep dark blue/grey from Apple Maps Web */
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  box-shadow: 2px 0 15px rgba(0,0,0,0.5);
+  color: white;
+}
+.sidebar-header {
+  padding: 1.5rem 1.25rem 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+.logout-icon-btn {
+  background: transparent;
+  color: #8e8e93;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.logout-icon-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.sidebar-search {
+  padding: 0 1.25rem;
+  margin-bottom: 1.5rem;
+}
+.sidebar-search input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  color: white;
+  font-size: 0.95rem;
+  outline: none;
+}
+.sidebar-search input::placeholder {
+  color: #8e8e93;
+}
+.sidebar-search input:focus {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.sidebar-menu-title {
+  padding: 0 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #8e8e93;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.5rem;
+}
+
+.users-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 0.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.user-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+.active-me {
+  background: rgba(10, 132, 255, 0.1);
+}
+.active-me:hover {
+  background: rgba(10, 132, 255, 0.15);
+}
+.user-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: white;
+  background: #8e8e93;
+}
+.user-details {
+  display: flex; flex-direction: column; gap: 0.1rem;
+}
+.user-name {
+  font-size: 0.95rem; font-weight: 500;
+}
+.user-time {
+  font-size: 0.8rem; color: #8e8e93;
+}
+.live-text {
+  color: #34c759; /* Apple Green */
+  font-weight: 500;
+}
+
+/* ── APPLE MAPS WEB MAP AREA ── */
+.apple-map-wrapper {
+  flex: 1;
+  position: relative;
+  height: 100vh;
+}
+.map-container {
+  width: 100%; height: 100%;
+  background: #2a2c35; /* Dark fallback */
+}
+
+/* MAGIC: Invert CartoDB Voyager to get Apple Maps Dark Mode Deep Blue Water & Dark Land */
+.apple-map-tiles {
+  filter: invert(100%) hue-rotate(180deg) brightness(0.95) contrast(0.95) saturate(1.4);
+}
+
+/* ── FLOATING CONTROLS (Bottom Right) ── */
+.apple-floating-controls {
+  position: absolute;
+  bottom: 30px; right: 20px;
+  z-index: 1000;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.locate-me-fab {
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  background: rgba(28, 28, 30, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #8e8e93;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: all 0.2s;
+}
+.locate-me-fab:hover {
+  background: rgba(44, 44, 46, 0.95);
+  color: white;
+}
+.locate-me-fab svg {
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+
+/* ── APPLE MAPS STYLE MARKERS ── */
+.custom-marker-container {
+  display: flex; justify-content: center; align-items: center;
+}
+
+/* Current User (Pulsing Blue Dot) */
+.apple-me-marker {
+  width: 22px; height: 22px;
+  background-color: var(--primary-color);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(10, 132, 255, 0.6);
+  position: relative;
+  z-index: 100;
+}
+.apple-pulse-ring {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px; height: 60px;
+  background-color: rgba(10, 132, 255, 0.25);
+  border-radius: 50%;
+  animation: apple-pulse 2.5s infinite;
+  z-index: -1;
+}
+@keyframes apple-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0; }
+}
+
+/* Other Users (Small Avatars) */
+.apple-user-marker {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  position: relative;
+  z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+  transition: transform 0.2s;
+}
+.apple-user-marker:hover {
+  transform: scale(1.15);
+  z-index: 100 !important;
+}
+
+/* ── LEAFLET POPUPS (iOS Style) ── */
+.custom-popup .leaflet-popup-content-wrapper {
+  background: var(--card-bg) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(40px) saturate(200%) !important;
+  border: var(--glass-border);
+  color: #fff !important;
+  box-shadow: var(--glass-shadow);
+  border-radius: 12px;
+  padding: 4px;
+}
+.custom-popup .leaflet-popup-tip {
+  background-color: var(--card-bg) !important;
+  backdrop-filter: blur(40px) saturate(200%) !important;
+}
+.custom-popup b {
+  color: #fff; font-size: 1rem; font-weight: 600;
+}
