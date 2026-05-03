@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
-    "build": "npm run build --prefix frontend"
+    "build": "cd frontend && npm install --include=dev && npm run build"
   },
   "dependencies": {
     "cors": "^2.8.5",
