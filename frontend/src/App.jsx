@@ -13,27 +13,20 @@ function App() {
     e.preventDefault();
     if (!username.trim()) return;
     setLoading(true);
-    
+
     try {
-      const response = await fetch('/api/login', {
+      const res = await fetch('/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username })
       });
-      
-      const data = await response.json();
+
+      const data = await res.json();
       if (data.token) {
         setUser(data);
-        
-        // Connect socket with token (uses relative host automatically)
-        const newSocket = io({
-          auth: { token: data.token }
-        });
-        
-        setSocket(newSocket);
+        setSocket(io({ auth: { token: data.token } }));
       }
-    } catch (error) {
-      console.error('Login failed:', error);
+    } catch {
       alert('Login failed. Is the backend running?');
     } finally {
       setLoading(false);
@@ -41,21 +34,13 @@ function App() {
   };
 
   const handleLogout = () => {
-    if (socket) {
-      socket.disconnect();
-      setSocket(null);
-    }
+    socket?.disconnect();
+    setSocket(null);
     setUser(null);
   };
 
-  // Ask for location permission early if logged in
   useEffect(() => {
-    if (user) {
-      navigator.geolocation.getCurrentPosition(
-        () => console.log('Location permission granted'),
-        (err) => console.error('Location permission denied', err)
-      );
-    }
+    if (user) navigator.geolocation.getCurrentPosition(() => {}, () => {});
   }, [user]);
 
   if (!user) {
